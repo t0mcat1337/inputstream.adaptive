@@ -122,6 +122,9 @@ public:
   uint64_t GetStartNumber() const { return m_startNumber; }
   void SetStartNumber(uint64_t startNumber) { m_startNumber = startNumber; }
 
+  uint64_t GetEndNumber() const { return m_endNumber; }
+  void SetEndNumber(uint64_t endNumber) { m_endNumber = endNumber; }
+
   uint64_t GetDuration() const { return m_duration; }
   void SetDuration(uint64_t duration) { m_duration = duration; }
 
@@ -279,6 +282,7 @@ protected:
   std::optional<CSegment> m_initSegment;
 
   uint64_t m_startNumber{1};
+  uint64_t m_endNumber{0}; // 0 if not set
 
   CSpinCache<CSegment> m_segmentTimeline;
 

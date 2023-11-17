@@ -230,6 +230,13 @@ bool AdaptiveStream::PrepareNextDownload(DownloadInfo& downloadInfo)
   SEGMENTBUFFER* segBuffer = segment_buffers_[valid_segment_buffers_];
   ++valid_segment_buffers_;
 
+  uint64_t endNum=segBuffer->rep->GetEndNumber();
+  uint64_t segNum=segBuffer->segment_number;
+
+  // We have an EndNumber from DASH (SegmentTemplate) and exceeded it, so no segemnt available any more
+  if(endNum > 0 & segNum > 0 & segNum > endNum)
+    return false;
+
   // Clear existing data
   segBuffer->buffer.clear();
   downloadInfo.m_segmentBuffer = segBuffer;
