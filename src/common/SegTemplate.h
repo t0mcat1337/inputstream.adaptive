@@ -48,6 +48,9 @@ public:
   uint64_t GetStartNumber() const;
   void SetStartNumber(uint64_t startNumber) { m_startNumber = startNumber; }
 
+  uint64_t GetEndNumber() const;
+  void SetEndNumber(uint64_t endNumber) { m_endNumber = endNumber; }
+
   bool HasVariableTime() const;
   
   CSegment MakeInitSegment();
@@ -66,6 +69,7 @@ private:
   std::optional<uint32_t> m_timescale;
   std::optional<uint32_t> m_duration;
   std::optional<uint64_t> m_startNumber;
+  std::optional<uint64_t> m_endNumber;
 
   CSegmentTemplate* m_parentSegTemplate{nullptr};
 };
