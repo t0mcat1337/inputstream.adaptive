@@ -828,6 +828,7 @@ void adaptive::CDashTree::ParseTagRepresentation(pugi::xml_node nodeRepr,
     repr->SetSegmentTemplate(segTemplate);
 
     repr->SetStartNumber(segTemplate.GetStartNumber());
+    repr->SetEndNumber(segTemplate.GetEndNumber());
   }
   else if (adpSet->HasSegmentTemplate())
   {
@@ -836,6 +837,7 @@ void adaptive::CDashTree::ParseTagRepresentation(pugi::xml_node nodeRepr,
     repr->SetSegmentTemplate(segTemplate);
 
     repr->SetStartNumber(segTemplate.GetStartNumber());
+    repr->SetEndNumber(segTemplate.GetEndNumber());
 
     if (segTemplate.HasInitialization())
       repr->SetInitSegment(segTemplate.MakeInitSegment());
@@ -1248,6 +1250,10 @@ void adaptive::CDashTree::ParseSegmentTemplate(pugi::xml_node node, CSegmentTemp
   uint32_t startNumber;
   if (XML::QueryAttrib(node, "startNumber", startNumber))
     segTpl->SetStartNumber(startNumber);
+
+  uint32_t endNumber;
+  if (XML::QueryAttrib(node, "endNumber", endNumber))
+    segTpl->SetEndNumber(endNumber);
 
   std::string initialization;
   if (XML::QueryAttrib(node, "initialization", initialization))
